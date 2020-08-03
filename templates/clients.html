@@ -9,6 +9,7 @@
 
 <body>
   <h1>Clientes</h1>
+  <a href="{% url 'logout' %}">Sair</a>
   <ul>
     {% for client in clients %}
     <li>
