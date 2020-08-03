@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Person
+from .models import Client
 
 
-class PersonsForm(ModelForm):
+class ClientsForm(ModelForm):
     class Meta:
-        model = Person
+        model = Client
         fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'avatar']

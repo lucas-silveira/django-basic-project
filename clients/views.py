@@ -1,36 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Person
-from .forms import PersonsForm
+from .models import Client
+from .forms import ClientsForm
 
 
-def persons_list(request):
-    persons = Person.objects.all()
-    return render(request, 'persons.html', {'persons': persons})
+def clients_list(request):
+    clients = Client.objects.all()
+    return render(request, 'clients.html', {'clients': clients})
 
 
-def persons_new(request):
-    form = PersonsForm(request.POST or None, request.FILES or None)
+def clients_new(request):
+    form = ClientsForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
-        return redirect('persons_list')
-    return render(request, 'persons_form.html', {'form': form, 'button_name':
-                                                 'Criar Person'})
+        return redirect('clients_list')
+    return render(request, 'clients_form.html', {'form': form, 'button_name':
+                                                 'Cadastrar'})
 
 
-def persons_update(request, id):
-    person = get_object_or_404(Person, pk=id)
-    form = PersonsForm(request.POST or None,
-                       request.FILES or None, instance=person)
+def clients_update(request, id):
+    client = get_object_or_404(Client, pk=id)
+    form = ClientsForm(request.POST or None,
+                       request.FILES or None, instance=client)
 
     if form.is_valid():
         form.save()
-        return redirect('persons_list')
+        return redirect('clients_list')
 
-    return render(request, 'persons_form.html', {'form': form, 'button_name':
-                                                 'Atualizar Person'})
+    return render(request, 'clients_form.html', {'form': form, 'button_name':
+                                                 'Atualizar'})
 
 
-def persons_delete(request, id):
-    person = get_object_or_404(Person, pk=id)
-    person.delete()
-    return redirect('persons_list')
+def clients_delete(request, id):
+    clients = get_object_or_404(Client, pk=id)
+    clients.delete()
+    return redirect('clients_list')
